@@ -23,6 +23,7 @@ gulp.task('sass', function() {
         .pipe(plumber())
         .pipe(sass({ style: 'compressed', lineNumbers : true }))
         .pipe(plumber.stop())
+        .pipe(rename('main.min.css'))
         .pipe(gulp.dest('public/css'))
         .pipe(notify({ message: 'Styles task complete' }));
 });
@@ -40,7 +41,7 @@ gulp.task('scripts', function() {
 // Watch Files For Changes
 gulp.task('watch', function() {
     gulp.watch('public/js/*.js', ['lint', 'scripts']);
-    gulp.watch('sass/*/{*.sass,*.scss}', ['sass']);
+    gulp.watch('sass/**/{*.sass,*.scss}', ['sass']);
 });
 
 
