@@ -1,0 +1,25 @@
+@mixin font-size($value)
+    font-size: $value + px
+    font-size: ($value / 10) + rem
+
+@mixin line-height($value)
+    line-height: $value + px
+    line-height: ($value / 10) + rem
+
+@mixin at2x($image_name, $w: auto, $h: auto, $extension: ".jpg")
+    background-image: url($image_name + $extension)
+    $x2img: $image_name + "@2x" + $extension
+
+    @media all and (-webkit-min-device-pixel-ratio: 1.5)
+        background-image: url($x2img)
+        background-size: $w $h
+
+@mixin breakpoint($size)
+
+    @if $size == sm
+        @media (min-width: 768px)
+            @content
+
+    @else if $size == md
+        @media (min-width: 992px)
+            @content
