@@ -1,0 +1,9 @@
+{
+  "name": "songs-with-sam-pi",
+  "version": "0.0.1",
+  "description": "code for pi stuff over the web",
+  "main": "app.js",
+  "author": "@sam_billingham",
+  "dependencies": {
+  }
+}

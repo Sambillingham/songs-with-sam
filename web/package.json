@@ -1,0 +1,14 @@
+{
+  "name": "songs-with-sam",
+  "version": "0.0.1",
+  "description": "play songs through my pi over the web",
+  "main": "app.js",
+  "author": "@sam_billingham",
+  "dependencies": {
+    "express": "4.x",
+    "morgan": "~1.0.0",
+    "body-parser": "~1.0.0",
+    "method-override": "~1.0.0",
+    "jade": "~1.3.1"
+  }
+}
