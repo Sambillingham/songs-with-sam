@@ -6,6 +6,8 @@
   "author": "@sam_billingham",
   "dependencies": {
     "spotify-web": "~1.1.1",
-    "socket.io-client": "~0.9.16"
+    "socket.io-client": "~0.9.16",
+    "lame": "~1.0.3",
+    "speaker": "~0.1.0"
   }
 }
