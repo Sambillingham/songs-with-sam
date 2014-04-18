@@ -22,7 +22,9 @@
     "gulp-ruby-sass": "~0.4.0",
     "gulp-notify": "~1.1.1",
     "jshint-stylish": "~0.1.5",
-    "gulp-plumber": "~0.6.0"
+    "gulp-plumber": "~0.6.0",
+    "vinyl-source-stream": "~0.1.1",
+    "browserify": "~3.44.0"
   },
   "engines": {
     "node": "0.10.x"

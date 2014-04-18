@@ -1,14 +1,14 @@
 // gulp
-var gulp = require('gulp');
-
-// Plugins
-var jshint = require('gulp-jshint'),
+var gulp = require('gulp'),
+    browserify = require('browserify'),
+    jshint = require('gulp-jshint'),
     sass = require('gulp-ruby-sass'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     notify = require('gulp-notify'),
-    plumber = require('gulp-plumber');
+    plumber = require('gulp-plumber'),
+    source = require('vinyl-source-stream');
 
 // Lint
 gulp.task('lint', function() {
@@ -30,7 +30,7 @@ gulp.task('sass', function() {
 
 // Concatenate & Minify JS
 gulp.task('scripts', function() {
-    gulp.src(['public/js/main.js'])
+    gulp.src(['public/js/vendor/jquery-1.11.0.min.js','public/js/main.js'])
         .pipe(concat('all.js'))
         .pipe(gulp.dest('public/js/dist'))
         .pipe(rename('main.min.js'))
@@ -40,7 +40,7 @@ gulp.task('scripts', function() {
 
 // Watch Files
 gulp.task('watch', function() {
-    gulp.watch('public/js/*.js', ['lint', 'scripts']);
+    gulp.watch('public/js/**/*.js', ['lint', 'scripts']);
     gulp.watch('sass/**/{*.sass,*.scss}', ['sass']);
 });
 
