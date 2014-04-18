@@ -21,7 +21,7 @@ gulp.task('lint', function() {
 gulp.task('sass', function() {
     gulp.src('sass/{*.sass,*.scss}')
         .pipe(plumber())
-        .pipe(sass({ style: 'compressed', lineNumbers : true }))
+        .pipe(sass({ style: 'expanded', lineNumbers : true }))
         .pipe(plumber.stop())
         .pipe(rename('main.min.css'))
         .pipe(gulp.dest('public/css'))
