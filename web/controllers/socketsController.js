@@ -5,7 +5,8 @@ var app = require('../app'),
 module.exports.init = function(socket){
 
     app.io.sockets.emit('connection');
-
+    piController.testStatus();
+    
     //new track sent from web interface
     socket.on('new-track', piController.newTrack);
 
@@ -13,5 +14,8 @@ module.exports.init = function(socket){
     socket.on('status-check', piController.status);
 
     //pi returned current status
-    //socket.on('pi-status', piController.status);
+    socket.on('pi-status', piController.setStatus);
+
+    //check if disconnected client is the pi
+    socket.on('disconnect', piController.testStatus);
 };

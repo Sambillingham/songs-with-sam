@@ -61,18 +61,23 @@ $(function () {
                 console.log('Current Status: ', data);
                 self.displayStatus(data);
             });
+
+            this.socket.on('update-status', function(data){
+                console.log(data);
+                self.displayStatus(data);
+            });
         },
 
         displayStatus: function(data){
             var $pi = $('.pi-status');
 
-            console.log(data.status);
+            console.log(data);
             switch(data.status){
 
-                case 'online-playing':
-                    $pi.text('Online - Playing');
+                case 'playing':
+                    $pi.text('Online - Playing : ' + data.meta.track + ' - ' + data.meta.artist);
                     break;
-                case 'online-idle':
+                case 'idle':
                     $pi.text('Online - Idle');
                     break;
                 case 'offline':

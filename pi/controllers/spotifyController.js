@@ -4,6 +4,7 @@ var lame = require('lame'),
 
 //modules
 var app = require('../app'),
+    statusController = require('./statusController'),
     config = require('../config');
 
 module.exports.recivedTrack = function(data){
@@ -21,12 +22,23 @@ module.exports.recivedTrack = function(data){
             spotify.get(data.uri, function (err, track) {
                 if (err) throw err;
                 console.log('Playing: %s - %s', track.artist[0].name, track.name);
-                track.play()
 
+                statusController.status({
+                    status: 'playing',
+                    meta : {
+                        track: track.name,
+                        artist: track.artist[0].name,
+                        artwork: ''
+                    }
+                });
+                track.play()
                     .pipe(new lame.Decoder())
                     .pipe(new speaker())
                     .on('finish', function () {
                         spotify.disconnect();
+                        statusController.status({
+                            status: 'idle'
+                        });
                     });
             });
         });
