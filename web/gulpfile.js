@@ -40,7 +40,7 @@ gulp.task('scripts', function() {
 
 // Watch Files
 gulp.task('watch', function() {
-    gulp.watch('public/js/**/*.js', ['lint', 'scripts']);
+    gulp.watch('public/js/*.js', ['lint', 'scripts']);
     gulp.watch('sass/**/{*.sass,*.scss}', ['sass']);
 });
 

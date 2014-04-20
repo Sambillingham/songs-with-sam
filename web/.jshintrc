@@ -7,5 +7,5 @@
   "strict": true,
   "trailing": false,
   "undef": true,
-  "predef" : ["Modernizr", "io"]
+  "predef" : ["Modernizr", "io", "Backbone", "_"]
 }
