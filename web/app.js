@@ -26,4 +26,6 @@ routes.init(app);
 
 io.sockets.on('connection', socketsController.init );
 
+io.of('/pi').on('connection', socketsController.pi );
+
 module.exports.io = io;

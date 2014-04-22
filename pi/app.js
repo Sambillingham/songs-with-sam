@@ -1,5 +1,5 @@
 var io = require('socket.io-client'),
-    socket = io.connect('localhost', {
+    socket = io.connect('localhost/pi', {
         port: 3000
     });
 

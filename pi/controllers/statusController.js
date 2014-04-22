@@ -1,8 +1,7 @@
-//modules
 var app = require('../app');
 
 var piStatus = {
-    status : 'offline',
+    status : 'idle',
     meta: {
         track : '',
         artist : '',
@@ -14,6 +13,5 @@ module.exports.status = function(status) {
     if(status !== undefined){
         piStatus = status;
     }
-    console.log(piStatus);
     app.socket.emit('pi-status', piStatus);
 };

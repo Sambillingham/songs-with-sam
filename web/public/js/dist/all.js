@@ -55,18 +55,7 @@ $(function () {
         socketEvents : function() {
             var self = this;
 
-            this.socket.on('connection', function(){
-                //console.log("new connection, check status of pi");
-                self.socket.emit('status-check');
-            });
-
-            this.socket.on('pi-status', function(data){
-                //console.log('Current Status: ', data);
-                self.displayStatus(data);
-            });
-
             this.socket.on('update-status', function(data){
-                //console.log(data);
                 self.displayStatus(data);
             });
         },

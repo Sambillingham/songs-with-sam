@@ -4,18 +4,23 @@ var app = require('../app'),
 
 module.exports.init = function(socket){
 
-    app.io.sockets.emit('connection');
-    piController.testStatus();
+    //new user connected, send pi details to web client
+    piController.status();
 
     //new track sent from web interface
     socket.on('new-track', piController.newTrack);
 
-    //new user connected, check if pi is running
-    socket.on('status-check', piController.status);
+};
 
-    //pi returned current status
-    socket.on('pi-status', piController.setStatus);
+module.exports.pi = function(socket){
 
-    //check if disconnected client is the pi
-    socket.on('disconnect', piController.testStatus);
+    console.log("PI CONNECTED");
+
+    //pi returned current status 'playing' or 'idle'
+    socket.on('pi-status', piController.status);
+
+    socket.on('disconnect', function(){ //pi must be 'offline'
+        piController.status({status:'offline'});
+        console.log("PI disconnect");
+    });
 };
