@@ -1,6 +1,74 @@
 header
-    height: 200px
-    background: #ccc
-    color: #333
+    height: 450px
+    background: url(../img/trianglify-background.svg)
+    background-size: cover
+    color: #222
     text-align: center
-    +font-size(24)
+    +font-size(30)
+    font-weight: 100
+    padding: 50px 0 0
+
+    h1
+        margin: 0
+        margin-left: 10px
+        float: left
+        +font-size(20)
+        +line-height(32)
+
+    .help
+        position: absolute
+        left: 10px
+        top: 10px
+
+        .icon
+            display: block
+            float: left
+            width: 29px
+            height: 29px
+            line-height: 24px
+            font-weight: 700
+            font-size: 19px
+            border: solid 3px
+            border-radius: 50%
+            text-decoration: none
+
+            &:visited
+                color: #222
+                border: solid 3px
+
+            &:hover
+                color: $orange
+                border: solid 3px $orange
+
+    .pi-status
+        position: absolute
+        right: 10px
+        top: 10px
+        width: 20px
+        height: 20px
+        background: $red
+        border-radius: 50%
+
+    .album
+        height: 250px
+        width: 250px
+        margin: 0 auto
+        margin-bottom: 30px
+        background: transparent
+
+        .album-artwork
+            +transition(all 0.4s)
+            height: 250px
+            width: 250px
+
+    .track-lead
+        color: #fff
+        font-weight: 600
+        letter-spacing: 0.04em
+        +font-size(19)
+        margin-bottom: 10px
+
+    .track-details
+        color: #fff
+        +font-size(34)
+        letter-spacing: 0.03em

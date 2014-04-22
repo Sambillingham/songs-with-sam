@@ -6,7 +6,7 @@ module.exports.init = function(socket){
 
     app.io.sockets.emit('connection');
     piController.testStatus();
-    
+
     //new track sent from web interface
     socket.on('new-track', piController.newTrack);
 

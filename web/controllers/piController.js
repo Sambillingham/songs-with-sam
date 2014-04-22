@@ -21,27 +21,32 @@ module.exports.newTrack = function(data){
 };
 
 module.exports.setStatus = function(data){
-    piStatus = data;
+    if( data !== undefined){
+        piStatus = data;
+    }
     piOnline = true;
     app.io.sockets.emit('update-status', piStatus);
-    console.log("Status set to:", piStatus);
 };
 
 module.exports.status = function(data){
     app.io.sockets.emit('pi-status', piStatus);
-    console.log("Checking Pi Status", piStatus);
 };
 
 module.exports.testStatus = function(data){
-    piOnline = false;
-    app.io.sockets.emit('test-status');
-    var timer = setTimeout( function(){
-        console.log("pi is,", piOnline);
-        if(piOnline === false){
-            piController.setStatus({
-                status: 'offline'
-            });
-        }
-    }, 3000);
+    if(piStatus.status !== 'playing') {
+        piOnline = false;
+        app.io.sockets.emit('test-status');
+        var timer = setTimeout( function(){
+            if(piOnline === false){
+                piController.setStatus({
+                    status: 'offline'
+                });
+            } else {
+                // piController.setStatus({
+                //     status: 'idle'
+                // });
+            }
 
+        }, 10000);
+    }
 };

@@ -1,0 +1,79 @@
+main
+    .search
+        +outer-container
+        min-height: 400px
+        padding: 50px 15px
+
+        p
+            +font-size(22)
+
+        input.search-input,
+        button.search-btn
+            border: solid 0px transparent
+            height: 40px
+            +font-size(20)
+
+        input.search-input
+            margin-top: 20px
+            margin-bottom: 20px
+            width: 70%
+            padding-left: 20px
+
+            &:focus
+                outline: none
+
+        button.search-btn
+            width: 30%
+            background: $orange
+            color: #fff
+            +transition(background-color, 0.3s)
+
+            &:hover
+                background: darken($orange, 10%)
+
+            &:active
+                outline: none
+                background: darken($orange, 14%)
+            &:focus
+                outline: none
+
+        ul
+            padding: 0
+
+            li.track
+                padding: 5px 0
+                height: 40px
+                list-style: none
+
+        .send-track
+            +transition(all 0.4s)
+            display: block
+            float: left
+            height: 30px
+            width: 30px
+            background: url(../img/play.svg) no-repeat
+            background-size: 30px
+
+            &:hover
+                cursor: pointer
+                opacity: 0.7
+        .track-info
+            margin-left: 15px
+            +font-size(18)
+            +line-height(30)
+            letter-spacing: 0.03em
+
+    .what
+        background: #fff
+        .what-details
+            +outer-container
+            padding: 45px 15px
+            min-height: 300px
+
+            h2
+                +font-size(24)
+            p
+                margin-bottom: 20px
+                +font-size(20)
+                +line-height(28)
+

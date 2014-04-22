@@ -28,9 +28,10 @@ module.exports.recivedTrack = function(data){
                     meta : {
                         track: track.name,
                         artist: track.artist[0].name,
-                        artwork: ''
+                        artwork: track.album.cover[2].uri
                     }
                 });
+
                 track.play()
                     .pipe(new lame.Decoder())
                     .pipe(new speaker())

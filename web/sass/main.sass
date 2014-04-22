@@ -1,24 +1,46 @@
 @import "_normalize"
 @import "bourbon/bourbon"
 @import "neat/neat"
-@import "bitters/bitters"
+//@import "bitters/bitters"
 
-//mixins
+//includes
+@import "_vars"
+@import "_animations"
 @import "_mixins"
 
 //partials
 @import "_includes/header"
 @import "_includes/footer"
+@import "_includes/home"
 
 html
     font-size: 62.5%
+    font-family: "brandon-grotesque", "Proxima-Nova", helvetica, sans-serif
 
 body
-    background-color: #fff
+    background-color: #fafafa
 
 img
     max-width: 100%
 
-main
-    +outer-container
-    background-color: #fafafa
+.wf-loading
+
+    h1,
+    h2,
+    p,
+    span,
+    div,
+    button,
+    input
+        visibility: hidden
+
+a
+    &:link,
+    &:visited
+        +transition(all, 0.3s)
+        text-decoration: none
+        color: $orange
+        border-bottom: solid 3px $orange
+
+    &:hover
+        color: darken($orange, 15%)

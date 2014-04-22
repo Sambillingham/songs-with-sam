@@ -1,14 +1,39 @@
 extends layout
 
 block content
-    
+
     main
 
         section.search
-            h2 Spotify Search
-            input(type="text" name="search" class="search-input" placeholder="Search")
+            p
+                | You can play songs from here directly to my Raspberry Pi Spotify player. Go ahead, send me a track and let me know who you are on
+                |  <a href="http://twitter.com/sam_billingham">twitter</a>.
+                | Some of my favorites are listed below. Listen yourelf by clicking on the album cover.
+            input(type="text" name="search" class="search-input" placeholder="Search Spotify for something I might like")
             button.search-btn Search
 
             .results
                 ul
-            hr
+                    li(class="track")
+                        span(class="send-track" data-track-uri="spotify:track:0SwUDplbBp66rM5sMC0eD7")
+                        span(class="track-info") Comin' Home - City and Colour
+                    li(class="track")
+                        span(class="send-track" data-track-uri="spotify:track:2pxDPOhGfJyWSpDGQCZMmr")
+                        span(class="track-info") Anthology - Thrice
+                    li(class="track")
+                        span(class="send-track" data-track-uri="spotify:track:5l6tv2lFylSdCgkWyfHC0P")
+                        span(class="track-info") Sierra Leone - Mt. Eden
+                    li(class="track")
+                        span(class="send-track" data-track-uri="spotify:track:5XwTxxsP53MiA4JqJ73b2u")
+                        span(class="track-info") Terrible! How Terrible For The Great City! - As Cities Burn
+                    li(class="track")
+                        span(class="send-track" data-track-uri="spotify:track:1nPG3zzQuuytJdIX7PJzkr")
+                        span(class="track-info") Side Walk When She Walks - Alexisonfire
+
+        section#what-is-this.what
+
+            .what-details
+                h2 Whats going on here?
+                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dapibus sit amet felis ac tempor. Aliquam malesuada venenatis augue, tempor pulvinar augue vehicula sed. Etiam sapien lacus, mattis vitae molestie id, ultrices id elit. Curabitur suscipit faucibus facilisis. Sed tempor eros eget gravida mollis. Aliquam et quam et augue porttitor accumsan et sed tellus. Mauris mattis lacinia orci, ut pharetra sapien bibendum non. Etiam sit amet luctus lorem, ut accumsan dolor.
+                h2 Why can't I hear anything?
+                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dapibus sit amet felis ac tempor. Aliquam malesuada venenatis augue, tempor pulvinar augue vehicula sed. Etiam sapien lacus, mattis vitae molestie id, ultrices id elit. Curabitur suscipit faucibus facilisis. Sed tempor eros eget gravida mollis. Aliquam et quam et augue porttitor accumsan et sed tellus. Mauris mattis lacinia orci, ut pharetra sapien bibendum non. Etiam sit amet luctus lorem, ut accumsan dolor.
