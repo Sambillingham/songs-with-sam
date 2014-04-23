@@ -30,16 +30,26 @@ $(function () {
             });
 
            $('body').on('click', '.send-track', function() {
-                var trackUri = $(this).data('track-uri'),
-                    urlReady = trackUri.split(':');
-                self.socket.emit('new-track', {
-                    uri: trackUri
-                });
-               $('.track-link').attr("href", 'https://play.spotify.com/track/' + urlReady[2]);
-                $('html,body').animate({
-                    scrollTop: 0
-                }, 600,'swing');
-                console.log("track sent");
+
+                if(s.status !== 'playing'){
+                    var trackUri = $(this).data('track-uri'),
+                        urlReady = trackUri.split(':');
+                    self.socket.emit('new-track', {
+                        uri: trackUri
+                    });
+                    $('.track-link').attr("href", 'https://play.spotify.com/track/' + urlReady[2]);
+                    $('html,body').animate({
+                        scrollTop: 0
+                    }, 600,'swing');
+                    console.log("track sent");
+                } else {
+                    $('<div class="messages error"><p>Yo nobody likes that person who skips tracks, wait until it\'s finished.</p></div>').prependTo('.search');
+                    setTimeout( function(){
+                        $('.messages').fadeOut(600, function(){
+                            $(this).remove();
+                        });
+                    }, 7000);
+                }
             });
         },
 
@@ -63,19 +73,49 @@ $(function () {
             switch(data.status){
 
                 case 'playing':
-                    $('.album-artwork').fadeOut(300, function(){
-                        $(this).attr("src", data.meta.artwork).fadeIn(400);
+                    $('.album-artwork').transition({
+                        perspective: '400px', rotateY: '-120deg', opacity: 0, duration: 1000
+                    },
+                    function(){
+                        $(this).remove();
+                        $('<img src="'+data.meta.artwork+'" class="album-artwork">').css({
+                            'opacity' : '0', "transform" : "rotateY(120deg);"
+                        }).appendTo('.track-link').transition({
+                            perspective: '400px', rotateY: '0deg', opacity: 1, duration: 1000
+                        });
                     });
                     $track.text(data.meta.track + ' - ' + data.meta.artist);
                     s.status = 'playing';
                     $('.pi-status').css('background', '#55C215');
                     break;
                 case 'idle':
+                    $('.album-artwork').transition({
+                        perspective: '400px', rotateY: '-120deg', opacity: 0, duration: 1000
+                    },
+                    function(){
+                        $(this).remove();
+                        $('<img src="/img/album-placeholder.png" class="album-artwork">').css({
+                            'opacity' : '0', "transform" : "rotateY(120deg);"
+                        }).appendTo('.track-link').transition({
+                            perspective: '400px', rotateY: '0deg', opacity: 1, duration: 1000
+                        });
+                    });
                     $track.text('Nothing - Play something below');
                     s.status = 'idle';
                     $('.pi-status').css('background', '#15A2C2');
                     break;
                 case 'offline':
+                    $('.album-artwork').transition({
+                        perspective: '400px', rotateY: '-120deg', opacity: 0, duration: 1000
+                    },
+                    function(){
+                        $(this).remove();
+                        $('<img src="/img/album-placeholder.png" class="album-artwork">').css({
+                            'opacity' : '0', "transform" : "rotateY(120deg);"
+                        }).appendTo('.track-link').transition({
+                            perspective: '400px', rotateY: '0deg', opacity: 1, duration: 1000
+                        });
+                    });
                     $track.text('Nothing is happening - Pi Player is Offline');
                     s.status = 'offline';
                     $('.pi-status').css('background', '#C23515');
@@ -107,7 +147,16 @@ $(function () {
                 url: 'https://ws.spotify.com/search/1/track.json?q=' + searchParams,
                 type: "GET",
                 success: function(data) {
-                    self.displayTracks(data);
+                    if(data.tracks.length <= 0){
+                        $('<div class="messages error"><p>Looks like I can\'t find anything with that search request. It might be your spelling is as bad as mine or Spotify does not have the obscure trance tune you\'re looking for. Try again.</p></div>').prependTo('.search');
+                        setTimeout( function(){
+                            $('.messages').fadeOut(600, function(){
+                                $(this).remove();
+                            });
+                        }, 8500);
+                    } else {
+                        self.displayTracks(data);
+                    }
                 }
             });
         },

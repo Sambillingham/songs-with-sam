@@ -1,10 +1,24 @@
 footer
-    padding: 10px
-    background: #2c3e50
-    
+    padding: 15px
+    background: $navy
+
     p
         margin: 0
         color: #fff
         text-align: center
         +line-height(24)
-        +font-size(20)
+        +font-size(18)
+        letter-spacing: 0.03em
+
+        a
+            +transition(all, 400ms)
+
+            &:link,
+            &:visited,
+            &:active
+                color: #fafafa
+                border-bottom: 3px solid darken($navy, 8%)
+
+            &:hover
+                border-bottom: 3px solid darken($navy, 12%)
+
