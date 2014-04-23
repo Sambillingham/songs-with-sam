@@ -1,6 +1,5 @@
 "use strict";
 var gulp = require('gulp'),
-    browserify = require('browserify'),
     jshint = require('gulp-jshint'),
     sass = require('gulp-ruby-sass'),
     minifyCSS = require('gulp-minify-css'),
@@ -8,8 +7,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     notify = require('gulp-notify'),
-    plumber = require('gulp-plumber'),
-    source = require('vinyl-source-stream');
+    plumber = require('gulp-plumber');
 
 gulp.task('lint', function() {
     gulp.src('public/js/*.js')
@@ -20,8 +18,10 @@ gulp.task('lint', function() {
 gulp.task('sass', function() {
     gulp.src('sass/{*.sass,*.scss}')
         .pipe(plumber())
-        .pipe(sass({ style: 'compressed', lineNumbers : true }))
+        .pipe(sass({ style: 'expanded', lineNumbers : true }))
         .pipe(plumber.stop())
+        .pipe(rename('main.css'))
+        .pipe(gulp.dest('public/css'))
         .pipe(rename('main.min.css'))
         .pipe(minifyCSS())
         .pipe(gulp.dest('public/css'))
@@ -29,7 +29,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('scripts', function() {
-    gulp.src(['public/js/vendor/jquery-1.11.0.min.js','public/js/main.js'])
+    gulp.src(['public/js/vendor/jquery-1.11.0.min.js', 'public/js/vendor/jquery.transit.min.js', 'public/js/main.js'])
         .pipe(concat('all.js'))
         .pipe(gulp.dest('public/js/dist'))
         .pipe(rename('main.min.js'))

@@ -54,7 +54,7 @@ $(function () {
         },
 
         socketConnect : function(){
-            this.socket = io.connect('http://localhost:3000/');
+            this.socket = io.connect();
         },
 
         socketEvents : function() {
@@ -69,7 +69,6 @@ $(function () {
             var $track = $('.track-details span'),
                 $pi = $('.pi-status');
 
-            console.log(data);
             switch(data.status){
 
                 case 'playing':
