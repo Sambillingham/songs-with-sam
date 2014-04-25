@@ -13,7 +13,7 @@ var routes = require('./routes'),
 
 var env = process.env.NODE_ENV || 'development';
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8083);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(morgan('dev'));

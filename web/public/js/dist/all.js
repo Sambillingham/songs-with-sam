@@ -68,7 +68,7 @@ $(function () {
         },
 
         socketConnect : function(){
-            this.socket = io.connect();
+            this.socket = io.connect('songswith.sambillingham.com');
         },
 
         socketEvents : function() {

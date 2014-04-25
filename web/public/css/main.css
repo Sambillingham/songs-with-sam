@@ -479,7 +479,7 @@ th {
 }
 /* line 1, ../../../../../../Users/sam/Documents/Projects/songs-with-sam/web/sass/_includes/_header.sass */
 header {
-  height: 450px;
+  min-height: 450px;
   background: url(../img/trianglify-background.svg);
   background-size: cover;
   color: #222222;
@@ -573,6 +573,7 @@ header .track-lead {
 }
 /* line 80, ../../../../../../Users/sam/Documents/Projects/songs-with-sam/web/sass/_includes/_header.sass */
 header .track-details {
+  padding: 0 0 10px;
   color: white;
   font-size: 34px;
   font-size: 3.4rem;
@@ -694,7 +695,7 @@ main .search ul {
 /* line 53, ../../../../../../Users/sam/Documents/Projects/songs-with-sam/web/sass/_includes/_home.sass */
 main .search ul li.track {
   padding: 5px 0;
-  height: 40px;
+  min-height: 40px;
   list-style: none;
 }
 /* line 58, ../../../../../../Users/sam/Documents/Projects/songs-with-sam/web/sass/_includes/_home.sass */
@@ -759,23 +760,23 @@ main .what .what-details p {
   line-height: 2.8rem;
 }
 
-/* line 16, main.sass */
+/* line 15, main.sass */
 html {
   font-size: 62.5%;
   font-family: "brandon-grotesque", "Proxima-Nova", helvetica, sans-serif;
 }
 
-/* line 20, main.sass */
+/* line 19, main.sass */
 body {
   background-color: #fafafa;
 }
 
-/* line 23, main.sass */
+/* line 22, main.sass */
 img {
   max-width: 100%;
 }
 
-/* line 28, main.sass */
+/* line 27, main.sass */
 .wf-loading h1,
 .wf-loading h2,
 .wf-loading p,
@@ -786,7 +787,7 @@ img {
   visibility: hidden;
 }
 
-/* line 38, main.sass */
+/* line 37, main.sass */
 a:link, a:visited {
   -webkit-transition: all, 0.3s;
   -moz-transition: all, 0.3s;
@@ -795,7 +796,7 @@ a:link, a:visited {
   color: #f75c39;
   border-bottom: solid 3px #f75c39;
 }
-/* line 45, main.sass */
+/* line 44, main.sass */
 a:hover {
   color: #db2f09;
 }
