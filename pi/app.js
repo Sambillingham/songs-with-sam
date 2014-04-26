@@ -1,6 +1,6 @@
 var io = require('socket.io-client'),
-    socket = io.connect('localhost/pi', {
-        port: 3000
+    socket = io.connect('songswith.sambillingham.com/pi', {
+        port: 8083
     });
 
 //modules
