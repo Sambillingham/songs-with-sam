@@ -40,6 +40,9 @@ module.exports.recivedTrack = function(data){
                         statusController.status({
                             status: 'idle'
                         });
+
+                        console.log("TRACK HAS FINISHED");
+
                     });
             });
         });

@@ -1,14 +1,24 @@
 songs-with-sam
 ==============
 
-#web setup
+##web setup
+
+###Dev
 ```Shell
 npm install
 cd sass/ && bourbon install
 gulp
 ```
 
-#PI setup
+###Run
+
+Check ports for local sockets in app.js/main.js
+```Shell
+npm install
+node app.js
+```
+
+##PI setup
 
 You will need a device password if you do not have a legacy account. Note logging in with username and password will not work. Visit [https://www.spotify.com/account/set-device-password/](https://www.spotify.com/account/set-device-password/) to create a device user/pass. Enter the details in config.example.js and rename it to config.js.
 
@@ -39,4 +49,10 @@ You can set the audio volume via the command line, have a sound file playing so 
 
 ```Shell
 amixer cset numid=1 -- 80% // use ranges from > 50%  to < 100 i found outside of that range it just cuts all volume.
+```
+
+### Run the thing
+```Shell
+npm install
+node app.js
 ```
