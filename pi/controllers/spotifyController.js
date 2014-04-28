@@ -1,6 +1,12 @@
 var lame = require('lame'),
     speaker = require('speaker'),
+    stream = require('stream'),
     Spotify = require('spotify-web');
+
+var connection = {},
+    Stream = new stream(),
+    Lame = new stream(),
+    Speaker = new stream();
 
 //modules
 var app = require('../app'),
@@ -17,34 +23,35 @@ module.exports.recivedTrack = function(data){
         });
     } else {
         Spotify.login(config.credentials.username, config.credentials.password, function (err, spotify) {
-          if (err) throw err;
+            if (err) {
+                console.log("Error logging into spotify: ", err);
+            } else {
+                spotify.get(data.uri, function (err, track) {
+                    if (err) throw err;
+                    console.log('Playing: %s - %s', track.artist[0].name, track.name);
 
-            spotify.get(data.uri, function (err, track) {
-                if (err) throw err;
-                console.log('Playing: %s - %s', track.artist[0].name, track.name);
-
-                statusController.status({
-                    status: 'playing',
-                    meta : {
-                        track: track.name,
-                        artist: track.artist[0].name,
-                        artwork: track.album.cover[2].uri
-                    }
-                });
-
-                track.play()
-                    .pipe(new lame.Decoder())
-                    .pipe(new speaker())
-                    .on('finish', function () {
-                        spotify.disconnect();
-                        statusController.status({
-                            status: 'idle'
-                        });
-
-                        console.log("TRACK HAS FINISHED");
-
+                    statusController.status({
+                        status: 'playing',
+                        meta : {
+                            track: track.name,
+                            artist: track.artist[0].name,
+                            artwork: track.album.cover[2].uri
+                        }
                     });
-            });
+
+                    track.play()
+                        .pipe(new lame.Decoder())
+                        .pipe(new speaker())
+                        .on('finish', function () {
+                            spotify.disconnect();
+                            statusController.status({
+                                status: 'idle'
+                            });
+                            console.log("TRACK HAS FINISHED");
+                        });
+                });
+            }
+
         });
     }
 };

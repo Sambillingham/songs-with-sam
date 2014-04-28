@@ -1,5 +1,8 @@
 songs-with-sam
 ==============
+Live at [songswith.sambillingham.com](http://songswith.sambillingham.com)
+
+A simple Raspberry Pi Spotify player controlled via a web interface
 
 ##web setup
 
